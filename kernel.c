@@ -9,9 +9,9 @@ int mod (int a, int b);
 char line[80];
 char buffer[512];
 
-//~~~~~~~~~~~~~~~~~~~~~~~~ main function ~~~~~~~~~~~~~~~~~~~~~~~~~
+//~~~~~~~~~~~~~~~~~~~~~~~~ main function ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 int main() {
-	printString("Hello World\r\n\0");
+	printString("Hello!!!\r\n\0");
 	printString("Enter a line");
 	printString("\r\n\0");
 	readString(line);
@@ -39,7 +39,7 @@ void printString(char* string) {
 		c = string[++index];
 	}
 }
-// ~~~~~~~~~~~~~~~~ function to read from the keyboard ~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~ function to read from the keyboard ~~~~~~~~~~~~~~~~
 void readString(char* string) {
 	int index = 0;
 	char c = 0;
@@ -53,7 +53,7 @@ void readString(char* string) {
 	string[index] = '\n';
 	string[index + 1] = 0;
 }
-// ~~~~~~~~~~~~~~ function to read a sector from disk ~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~ function to read a sector from disk ~~~~~~~~~~~~~~~~~
 void readSector(char* buffer, int sector) {
 	int CH = sector/36;
 	int CL = mod (sector, 18);
@@ -61,6 +61,14 @@ void readSector(char* buffer, int sector) {
 	interrupt(0x13, 2 * 256 + 1, buffer, CH * 256 + CL + 1, DH * 256 + 0);
 
 }
+// ~~~~~~~~~~~~~~ function for calculating remainder ~~~~~~~~~~~~~~~~~~~
+int mod (int a, int b) {
+	while (a>=b) {
+	       a=a-b;
+	}
+	return a;
+}
+
 // ~~~~~~~~~~~~~~ function to handle interrupt ~~~~~~~~~~~~~~~~~~~~~~~~
 void handleInterrupt21(int ax, int bx, int cx, int dx) {
 	printString("Hello there!");
@@ -74,13 +82,6 @@ void handleInterrupt21(int ax, int bx, int cx, int dx) {
 	} else {
 		printString("Oops!...you've got it wrong bud!!");
 	}
-}
-// ~~~~~~~~~~~~~~ function for calculating remainder ~~~~~~~~~~~~~~~~~~~
-int mod (int a, int b) {
-	while (a>=b) {
-	       a=a-b;
-	}
-	return a;
 }
 
 
