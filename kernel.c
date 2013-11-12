@@ -18,14 +18,14 @@ int main() {
 	printString("\r\n\0");
 	printString(line);
 	printString("\r\n\0");
-	 readSector(buffer, 30);
-	 printString("\r\n\0");
-     printString(buffer);
-     printString("\r\n\0");
-     makeInterrupt21(); 
-     interrupt(0x21, 1, line, 0, 0);
-     printString("\r\n\0");
-     interrupt(0x21, 0, line, 0, 0);        
+	readSector(buffer, 30);
+	printString("\r\n\0");
+        printString(buffer);
+        printString("\r\n\0");
+        makeInterrupt21(); 
+        interrupt(0x21, 1, line, 0, 0);
+        printString("\r\n\0");
+        interrupt(0x21, 0, line, 0, 0);        
     
     while(1);
     return 0;
