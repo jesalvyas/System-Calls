@@ -27,10 +27,9 @@ int main() {
         printString("\r\n\0");
         interrupt(0x21, 0, line, 0, 0);        
     
-    while(1);
-    return 0;
+        while(1);
+        return 0;
 }
-
 //~~~~~~~~~~~~~~~~~~ function for printing to screen ~~~~~~~~~~~~~~~~~~
 void printString(char* string) {
 	int index = 0;
@@ -68,8 +67,8 @@ void handleInterrupt21(int ax, int bx, int cx, int dx) {
 	if (ax == 0) {
 		printString(bx);
 	} else if (ax == 1) {
-        printString("Enter a line:");
-        readString(bx);
+                printString("Enter a line:");
+                readString(bx);
 	} else if (ax == 2) {
 		readSector(bx, cx);
 	} else {
@@ -79,7 +78,7 @@ void handleInterrupt21(int ax, int bx, int cx, int dx) {
 // ~~~~~~~~~~~~~~ function for calculating remainder ~~~~~~~~~~~~~~~~~~~
 int mod (int a, int b) {
 	while (a>=b) {
-		a=a-b;
+	       a=a-b;
 	}
 	return a;
 }
